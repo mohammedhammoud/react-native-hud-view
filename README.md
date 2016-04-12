@@ -33,6 +33,7 @@ HudView is a React Native Component for showing HUDs. HudView is based on [react
 | showError     | None |
 | showCustomIcon | setName, iconName, rotate, hideOnCompletion |
 | showCustomComponent | component, rotate, hideOnCompletion |
+| hide | None |
 
 ### Method Args
 | Name        | Type | Default | Alternatives |
@@ -56,6 +57,10 @@ render() {
 #####Show Spinner HUD
 ```
 this.refs.hudView.showSpinner()
+```
+#####Hide HUD
+```
+this.refs.hudView.hide()
 ```
 #####Show Error HUD
 ```
