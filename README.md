@@ -37,7 +37,7 @@ HudView is a React Native Component for showing HUDs. HudView is based on [react
 ### Method Args
 | Name        | Type | Default | Alternatives |
 | ------------- |-------------|-------------|-------------| 
-|setName | String | fontawesome | Ionicons, Entypo, EvilIcons, FontAwesome, MaterialIcons, Octicons, Zocial, Foundation |
+|setName | String | fontawesome | ionicons, entypo, evilicons, fontawesome, materialicons, octicons, zocial, foundation |
 | iconName | String | null | See font icon documentation |
 | rotate     | Boolean | false | true/false |
 | hideOnCompletion | Boolean | true | true/false |
