@@ -91,7 +91,6 @@ class HudView extends React.Component {
    }
 
    _getHudRgbaColor() {
-     console.log(this._getHudOpacity())
      const opacity = this._getHudOpacity();
      const color = this._getHudBackgroundColor();
      const rgbColor = this._hexToRgb(color);
