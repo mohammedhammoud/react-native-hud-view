@@ -75,7 +75,7 @@ class HudView extends React.Component {
    }
 
    _getHudOpacity() {
-     return this.props.hudOpacity || 0.8;
+     return this.props.hudOpacity && this.props.hudOpacity >= 0 ? this.props.hudOpacity : 0.8;
    }
 
    _getIconSize() {
@@ -231,4 +231,3 @@ HudView.propTypes = {
 }
 
 module.exports = HudView;
-
