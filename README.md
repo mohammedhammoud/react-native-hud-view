@@ -16,7 +16,8 @@ HudView is a React Native Component for showing HUDs. HudView is based on [react
 
 ### Props
 | Name        | Type | Default |
-| ------------- |-------------|-------------| 
+| ------------- |-------------|-------------|
+|fadeDuration | Number | 700 |
 |hudBackgroundColor | String | #000000 |
 | hudOpacity | Number | 0.8 |
 | iconSize     | Number | 42 |
@@ -27,7 +28,7 @@ HudView is a React Native Component for showing HUDs. HudView is based on [react
 
 ### Methods
 | Methods        | Args         
-| ------------- |-------------| 
+| ------------- |-------------|
 |showSpinner | None |
 | showSuccess | None |
 | showError     | None |
@@ -37,7 +38,7 @@ HudView is a React Native Component for showing HUDs. HudView is based on [react
 
 ### Method Args
 | Name        | Type | Default | Alternatives |
-| ------------- |-------------|-------------|-------------| 
+| ------------- |-------------|-------------|-------------|
 |setName | String | fontawesome | ionicons, entypo, evilicons, fontawesome, materialicons, octicons, zocial, foundation |
 | iconName | String | null | See font icon documentation |
 | rotate     | Boolean | false | true/false |
@@ -64,7 +65,7 @@ this.refs.hudView.hide()
 ```
 #####Show Error HUD
 ```
-this.refs.hudView.showError() 
+this.refs.hudView.showError()
 ```
 #####Show Custom Icon HUD
 ```
@@ -86,7 +87,7 @@ var customComponent = (<Text style={{color: "#ffffff"}}>Spinning</Text>)
 this.refs.hudView.showCustomComponent(customComponent, true, false)
 ```
 #####Do something on HUD completion
-All methods returns a promise if hideOnCompletion is set to true. 
+All methods returns a promise if hideOnCompletion is set to true.
 ```
 hudView.showSuccess().then(() => {
   alert("Success view did complete.")

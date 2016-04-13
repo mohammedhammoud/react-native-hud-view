@@ -23,7 +23,7 @@ class HudView extends React.Component {
   constructor(props) {
      super(props);
      this.state = {
-       fadeInDuration: 700,
+       fadeDuration: this._getFadeDuration(),
        isVisible: false,
        isRotating: false,
        icon: null,
@@ -44,14 +44,14 @@ class HudView extends React.Component {
      this.setState({isVisible: true})
      Animated.timing(
        this.state.fadeAnim,
-       {toValue: 1, duration: this.state.fadeInDuration}
+       {toValue: 1, duration: this.state.fadeDuration}
      ).start();
    }
 
    _fadeOut() {
      Animated.timing(
        this.state.fadeAnim,
-       {toValue: 0, duration: this.state.fadeInDuration}
+       {toValue: 0, duration: this.state.fadeDuration}
      ).start(() => {
        this.setState({isVisible: false})
      });
@@ -74,8 +74,12 @@ class HudView extends React.Component {
      return this.props.hudBackgroundColor || "#000000";
    }
 
+   _getFadeDuration() {
+     return this.props.fadeDuration != null && this.props.fadeDuration >= 0 ? this.props.hudOpacity : 700;
+   }
+
    _getHudOpacity() {
-     return this.props.hudOpacity && this.props.hudOpacity >= 0 ? this.props.hudOpacity : 0.8;
+     return this.props.hudOpacity != null && this.props.hudOpacity >= 0 ? this.props.hudOpacity : 0.8;
    }
 
    _getIconSize() {
@@ -87,6 +91,7 @@ class HudView extends React.Component {
    }
 
    _getHudRgbaColor() {
+     console.log(this._getHudOpacity())
      const opacity = this._getHudOpacity();
      const color = this._getHudBackgroundColor();
      const rgbColor = this._hexToRgb(color);
@@ -94,7 +99,7 @@ class HudView extends React.Component {
    }
 
    _getSetName() {
-     return this.props.setName ? this.props.setName.toLowerCase() : 'fontawesome';
+     return this.props.setName ? this.props.setName.toLowerCase() : 'fontawesome';
    }
 
   _getIconComponent(setName) {
@@ -130,7 +135,7 @@ class HudView extends React.Component {
    }
 
   _getContainerStyles() {
-    return [this.props.style, {flex: 1}];
+    return [this.props.style, {flex: 1}];
   }
 
   _getIconWrapperStyles() {
@@ -167,8 +172,8 @@ class HudView extends React.Component {
           this.hide();
           setTimeout(() => {
             resolve();
-        }, this.state.fadeInDuration)
-      }, this.state.fadeInDuration)
+        }, this.state.fadeDuration)
+      }, this.state.fadeDuration)
       }
     });
   }
@@ -188,12 +193,12 @@ class HudView extends React.Component {
   }
 
   showSpinner() {
-    const icon = this.props.spinnerComponent || this._renderDefaultSpinnerComponent();
+    const icon = this.props.spinnerComponent || this._renderDefaultSpinnerComponent();
     return this._showHud(icon, true);
   }
 
   showSuccess() {
-    const icon = this.props.successComponent || this._renderDefaultSuccessComponent();
+    const icon = this.props.successComponent || this._renderDefaultSuccessComponent();
     return this._showHud(icon, false, true);
   }
 
@@ -221,10 +226,11 @@ class HudView extends React.Component {
 }
 
 HudView.propTypes = {
+  fadeDuration: React.PropTypes.number,
   hudBackgroundColor: React.PropTypes.string,
   hudOpacity: React.PropTypes.number,
   iconSize: React.PropTypes.number,
-  iconColor: React.PropTypes.number,
+  iconColor: React.PropTypes.string,
   successComponent: React.PropTypes.object,
   errorComponent: React.PropTypes.object,
   spinnerComponent: React.PropTypes.object,
