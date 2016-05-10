@@ -161,7 +161,7 @@ class HudView extends React.Component {
   }
 
   _showHud(icon, rotate, hideOnCompletion) {
-    this.setState({icon: icon, isRotating: rotate})
+    this.setState({isVisible: false, icon: icon, isRotating: rotate})
     this._initializeRotationAnimation(rotate);
     this._fadeIn();
 
