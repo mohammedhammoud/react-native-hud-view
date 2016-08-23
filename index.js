@@ -7,7 +7,9 @@ const Octicons = require('react-native-vector-icons/Octicons');
 const Zocial = require('react-native-vector-icons/Zocial');
 const Foundation = require('react-native-vector-icons/Foundation');
 
-import React, {
+import React from 'react';
+
+import {
   View,
   Animated,
   Easing,
