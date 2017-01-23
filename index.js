@@ -7,7 +7,7 @@ const Octicons = require('react-native-vector-icons/Octicons');
 const Zocial = require('react-native-vector-icons/Zocial');
 const Foundation = require('react-native-vector-icons/Foundation');
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import {
   View,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class HudView extends React.Component {
+class HudView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,15 +103,15 @@ class HudView extends React.Component {
   }
 
   _getWidthSize() {
-    return this.props.width || 80;
+    return this.props.hudWidth || 80;
   }
 
   _getHeightSize() {
-    return this.props.height || 80;
+    return this.props.hudHeight || 80;
   }
 
   _getBorderRadiusSize() {
-    return this.props.borderRadius || 5;
+    return this.props.hudBorderRadius || 5;
   }
 
   _getIconColor() {
@@ -160,11 +160,13 @@ class HudView extends React.Component {
   _getHudContainerStyles() {
     return [
       styles.hudContainer,
-      { opacity: this.state.fadeAnim },
-      { width: this._getWidthSize() },
-      { height: his._getHeightSize() },
-      { borderRadius: his._getBorderRadiusSize() },
-      { backgroundColor: this._getHudRgbaColor() },
+      {
+        opacity: this.state.fadeAnim,
+        width: this._getWidthSize(),
+        height: this._getHeightSize(),
+        borderRadius: this._getBorderRadiusSize(),
+        backgroundColor: this._getHudRgbaColor(),
+      },
     ]
   }
 
@@ -265,14 +267,17 @@ class HudView extends React.Component {
 }
 
 HudView.propTypes = {
-  fadeDuration: React.PropTypes.number,
-  hudBackgroundColor: React.PropTypes.string,
-  hudOpacity: React.PropTypes.number,
-  iconSize: React.PropTypes.number,
-  iconColor: React.PropTypes.string,
-  successComponent: React.PropTypes.object,
-  errorComponent: React.PropTypes.object,
-  spinnerComponent: React.PropTypes.object,
+  fadeDuration: PropTypes.number,
+  hudBackgroundColor: PropTypes.string,
+  hudOpacity: PropTypes.number,
+  iconSize: PropTypes.number,
+  hudWidth: PropTypes.number,
+  hudHeight: PropTypes.number,
+  hudBorderRadius: PropTypes.number,
+  iconColor: PropTypes.string,
+  successComponent: PropTypes.object,
+  errorComponent: PropTypes.object,
+  spinnerComponent: PropTypes.object,
 };
 
 module.exports = HudView;
