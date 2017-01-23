@@ -175,8 +175,9 @@ class HudView extends Component {
   }
 
   _getIconWrapperStyles() {
-    var styles = this.state.isRotating ? { transform: [{ rotate: this._getInterpolatedRotateAnimation() }] } : {};
-    return styles;
+    return this.state.isRotating
+      ? { transform: [{ rotate: this._getInterpolatedRotateAnimation() }] }
+      : {};
   }
 
   _renderIcon() {
@@ -200,7 +201,7 @@ class HudView extends Component {
   }
 
   _showHud(icon, rotate, hideOnCompletion) {
-    this.setState({ isVisible: false, icon: icon, isRotating: rotate })
+    this.setState({ isVisible: false, icon: icon, isRotating: rotate });
     this._initializeRotationAnimation(rotate);
     this._fadeIn();
 
