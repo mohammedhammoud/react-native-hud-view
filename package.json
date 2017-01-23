@@ -1,6 +1,6 @@
 {
   "name": "react-native-hud-view",
-  "version": "1.0.6",
+  "version": "1.2.0",
   "description": "HudView is a React Native Component for showing HUDs. HudView is based on react-native-vector-icons but can also be used with custom components.",
   "main": "index.js",
   "scripts": {
