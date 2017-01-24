@@ -114,6 +114,10 @@ class HudView extends Component {
     return this.props.hudBorderRadius || 5;
   }
 
+  _getAdditionalStyles() {
+    return this.props.hudAdditionalStyles || {}
+  }
+
   _getIconColor() {
     return this.props.iconColor || "#FFFFFF";
   }
@@ -167,6 +171,7 @@ class HudView extends Component {
         borderRadius: this._getBorderRadiusSize(),
         backgroundColor: this._getHudRgbaColor(),
       },
+      this._getAdditionalStyles(),
     ]
   }
 
@@ -275,6 +280,7 @@ HudView.propTypes = {
   hudWidth: PropTypes.number,
   hudHeight: PropTypes.number,
   hudBorderRadius: PropTypes.number,
+  hudAdditionalStyles: PropTypes.object,
   iconColor: PropTypes.string,
   successComponent: PropTypes.object,
   errorComponent: PropTypes.object,
