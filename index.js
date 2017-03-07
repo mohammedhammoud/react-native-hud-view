@@ -34,6 +34,11 @@ class HudView extends React.Component {
      };
    }
 
+  reset() {
+    this.setState({rotationAnim: new Animated.Value(0)})
+    return this
+  }
+
    _hexToRgb(hex){
        hex = hex.replace('#','');
        r = parseInt(hex.substring(0,2), 16);
@@ -199,22 +204,26 @@ class HudView extends React.Component {
   }
 
   showSuccess() {
+    this.reset()
     const icon = this.props.successComponent || this._renderDefaultSuccessComponent();
     return this._showHud(icon, false, true);
   }
 
   showError() {
+    this.reset()
     const icon = this.props.errorComponent || this._renderDefaultErrorComponent();
     return this._showHud(icon, false, true);
   }
 
   showCustomIcon(setName, iconName, rotate, hideOnCompletion) {
+    this.reset()
     const _component = this._getIconComponent(setName);
     const icon = <_component name={iconName} size={this._getIconSize()} color={this._getIconColor()}/>
     return this._showHud(icon, rotate, hideOnCompletion);
   }
 
   showCustomComponent(component, rotate, hideOnCompletion) {
+    this.reset()
     return this._showHud(component, rotate, hideOnCompletion);
   }
 
