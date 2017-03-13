@@ -41,6 +41,22 @@ class HudView extends Component {
         };
     }
 
+    componentDidMount() {
+        const {isVisible, type} = this.props;
+        if (isVisible) {
+            this.show(type);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isVisible && !this.props.isVisible ||
+            nextProps.isVisible && nextProps.type !== this.props.type) {
+            this.show(nextProps.type);
+        } else if (!nextProps.isVisible && this.props.isVisible) {
+            this.hide();
+        }
+    }
+
     _hexToRgb(hex) {
         hex = hex.replace('#', '');
         r = parseInt(hex.substring(0, 2), 16);
@@ -227,6 +243,21 @@ class HudView extends Component {
         return this._showHud(component, rotate, hideOnCompletion);
     }
 
+    show(type) {
+        switch (type||this.props.type) {
+            case 'success':
+                return this.showSuccess();
+            case 'error':
+                return this.showError();
+            case 'customIcon':
+                return this.showCustomIcon();
+            case 'customComponent':
+                return this.showCustomComponent();
+            default:
+                return this.showSpinner();
+        }
+    }
+
     render() {
         return (
             <View {...this.props} style={this._getContainerStyles()}>
@@ -238,6 +269,8 @@ class HudView extends Component {
 }
 
 HudView.propTypes = {
+    isVisible: PropTypes.bool,
+    type: PropTypes.string,
     fadeDuration: PropTypes.number,
     hudBackgroundColor: PropTypes.string,
     hudOpacity: PropTypes.number,
@@ -253,6 +286,8 @@ HudView.propTypes = {
 };
 
 HudView.defaultProps = {
+    isVisible: false,
+    type: 'success',
     fadeDuration: 700,
     hudBackgroundColor: "#000000",
     hudOpacity: 0.8,
