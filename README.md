@@ -26,18 +26,21 @@ HudView is a React Native Component for showing HUDs. HudView is based on [react
 | hudAdditionalStyles | Object | {} |
 | iconSize     | Number | 42 |
 | iconColor | Number | #FFFFFF |
+| isVisible | Boolean | false |
+| type | String *(success, error, customComponent, customIcon, spinner)* | success |
 | successComponent | React Native Component | *react-native-vector-icons* FontAwesome check icon |
 | errorComponent | React Native Component | *react-native-vector-icons* FontAwesome exclamation-triangle icon |
 | spinnerComponent | React Native Component | *react-native-vector-icons* FontAwesome circle-o-notch icon |
 
 ### Methods
-| Methods        | Args         
-| ------------- |-------------|
+| Methods        | Args        | Values
+| ------------- |-------------| -------------|
 |showSpinner | None |
 | showSuccess | None |
 | showError     | None |
 | showCustomIcon | setName, iconName, rotate, hideOnCompletion |
 | showCustomComponent | component, rotate, hideOnCompletion |
+| show | type (default: spinner) | success, error, customComponent, customIcon, spinner |
 | hide | None |
 
 ### Method Args
@@ -57,7 +60,6 @@ render() {
   </HudView>)
 }
 ```
-
 
 #####Show Spinner HUD
 ```
@@ -96,4 +98,12 @@ All methods returns a promise if hideOnCompletion is set to true.
 hudView.showSuccess().then(() => {
   alert("Success view did complete.")
 })
+```
+
+### Example of usage with a declarative API
+```
+render() {
+  return(<HudView isVisible={this.state.isHudVisible} type={this.state.hudType}>
+  </HudView>)
+}
 ```
