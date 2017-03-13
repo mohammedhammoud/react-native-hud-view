@@ -20,6 +20,9 @@ HudView is a React Native Component for showing HUDs. HudView is based on [react
 |fadeDuration | Number | 700 |
 |hudBackgroundColor | String | #000000 |
 | hudOpacity | Number | 0.8 |
+| width | Number | 80 |
+| height | Number | 80 |
+| borderRadius | Number | 5 |
 | iconSize     | Number | 42 |
 | iconColor | Number | #FFFFFF |
 | successComponent | React Native Component | *react-native-vector-icons* FontAwesome check icon |
