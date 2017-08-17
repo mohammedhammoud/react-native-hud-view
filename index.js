@@ -7,7 +7,9 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 import Foundation from 'react-native-vector-icons/Foundation';
 
-import React, {Component, PropTypes} from 'react';
+import PropTypes from 'prop-types';
+
+import React, { Component } from 'react';
 
 import {View, Animated, Easing, StyleSheet} from 'react-native';
 
