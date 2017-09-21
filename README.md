@@ -61,38 +61,38 @@ render() {
 }
 ```
 
-#####Show Spinner HUD
+##### Show Spinner HUD
 ```
 this.refs.hudView.showSpinner()
 ```
-#####Hide HUD
+##### Hide HUD
 ```
 this.refs.hudView.hide()
 ```
-#####Show Error HUD
+##### Show Error HUD
 ```
 this.refs.hudView.showError()
 ```
-#####Show Custom Icon HUD
+##### Show Custom Icon HUD
 ```
 this.refs.hudView.showCustomIcon('ionicons', 'star')
 ```
-#####Show Custom Icon HUD as Spinner
+##### Show Custom Icon HUD as Spinner
 ```
 this.refs.hudView.showCustomIcon('ionicons', 'star', true, false)
 ```
 
-#####Show custom component HUD
+##### Show custom component HUD
 ```
 var customComponent = (<Text style={{color: "#ffffff"}}>Loading</Text>)
 this.refs.hudView.showCustomComponent(customComponent)
 ```
-#####Show custom component HUD as spinner
+##### Show custom component HUD as spinner
 ```
 var customComponent = (<Text style={{color: "#ffffff"}}>Spinning</Text>)
 this.refs.hudView.showCustomComponent(customComponent, true, false)
 ```
-#####Do something on HUD completion
+##### Do something on HUD completion
 All methods returns a promise if hideOnCompletion is set to true.
 ```
 hudView.showSuccess().then(() => {
