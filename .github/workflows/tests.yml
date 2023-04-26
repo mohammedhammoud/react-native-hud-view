@@ -1,0 +1,33 @@
+name: Run tests and verify code
+on: [pull_request]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup npm registry
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.15'
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+
+      - name: Run tests
+        run: yarn test:ci
+
+      - name: Run typecheck
+        run: yarn typecheck
+
+      - name: Run linter
+        run: yarn lint:ci
