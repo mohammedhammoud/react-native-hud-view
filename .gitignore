@@ -1,4 +1,7 @@
-yarn.lock
-node_modules/
-.history/
-.vscode/
+dist
+node_modules
+.eslintcache
+.history
+.vscode
+yarn-error.log
+.jest

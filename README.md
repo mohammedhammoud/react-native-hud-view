@@ -1,109 +1,128 @@
 # react-native-hud-view
-HudView is a React Native Component for showing HUDs. HudView is based on [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) but can also be used with custom components.
 
-## Supports the following vector icons:
-* Ionicons
-* Entypo
-* EvilIcons
-* FontAwesome
-* MaterialIcons
-* Octicons
-* Zocial
-* Foundation
+`react-native-hud-view` is a lightweight, flexible, and customizable progress indicator library for React Native. The library provides an easy way to show a HUD (Heads-up Display) when you need to indicate progress or loading in your application.
 
+`react-native-hud-view` is a standalone library and does not have any dependencies. However, you will need to provide your own icon component to use with the library. The icon component should accept the following props: `color`, `name`, and `size`.
 
-<img src="https://github.com/iktw/react-native-hud-view/blob/master/hudview.gif" width="300px"/>
+We recommend using the `react-native-vector-icons` library with `react-native-hud-view`, as it is guaranteed to work with the library. To use a different icon library, simply provide the appropriate icon component to the `HudProvider` component.
 
-### Props
-| Name        | Type | Default |
-| ------------- |-------------|-------------|
-|fadeDuration | Number | 700 |
-|hudBackgroundColor | String | #000000 |
-| hudOpacity | Number | 0.8 |
-| hudWidth | Number | 80 |
-| hudHeight | Number | 80 |
-| hudBorderRadius | Number | 5 |
-| hudAdditionalStyles | Object | {} |
-| iconSize     | Number | 42 |
-| iconColor | Number | #FFFFFF |
-| isVisible | Boolean | false |
-| type | String *(success, error, customComponent, customIcon, spinner)* | success |
-| successComponent | React Native Component | *react-native-vector-icons* FontAwesome check icon |
-| errorComponent | React Native Component | *react-native-vector-icons* FontAwesome exclamation-triangle icon |
-| spinnerComponent | React Native Component | *react-native-vector-icons* FontAwesome circle-o-notch icon |
+<img src="https://github.com/mohammedhammoud/react-native-hud-view/blob/dev/demo.gif" width="300px"/>
 
-### Methods
-| Methods        | Args        | Values
-| ------------- |-------------| -------------|
-|showSpinner | None |
-| showSuccess | None |
-| showError     | None |
-| showCustomIcon | setName, iconName, rotate, hideOnCompletion |
-| showCustomComponent | component, rotate, hideOnCompletion |
-| show | type (default: spinner) | success, error, customComponent, customIcon, spinner |
-| hide | None |
+## Installation
 
-### Method Args
-| Name        | Type | Default | Alternatives |
-| ------------- |-------------|-------------|-------------|
-|setName | String | fontawesome | ionicons, entypo, evilicons, fontawesome, materialicons, octicons, zocial, foundation |
-| iconName | String | null | See font icon documentation |
-| rotate     | Boolean | false | true/false |
-| hideOnCompletion | Boolean | true | true/false |
-| component | React Native Component | null | N/A |
+- `yarn add react-native-hud-view` or `npm install react-native-hud-view`
 
-### Example of usage
+## Usage
 
-```
-render() {
-  return(<HudView ref="hudView">
-  </HudView>)
-}
+### Wrap your app with HudProvider
+
+You can use the `HudProvider` component at the root of your application to provide the context for showing the HUD. This component should wrap your application's main component.
+
+```tsx
+import { HudProvider } from 'react-native-hud-view';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
+const App = () => {
+  return (
+    <HudProvider IconComponent={FontAwesomeIcon}>
+      <MainComponent />
+    </HudProvider>
+  );
+};
 ```
 
-##### Show Spinner HUD
-```
-this.refs.hudView.showSpinner()
-```
-##### Hide HUD
-```
-this.refs.hudView.hide()
-```
-##### Show Error HUD
-```
-this.refs.hudView.showError()
-```
-##### Show Custom Icon HUD
-```
-this.refs.hudView.showCustomIcon('ionicons', 'star')
-```
-##### Show Custom Icon HUD as Spinner
-```
-this.refs.hudView.showCustomIcon('ionicons', 'star', true, false)
+### Show and hide the HUD
+
+You can use the `useHudContext` hook to access the `show` and `hide` methods of the HUD context.
+
+```tsx
+import { useHudContext } from 'react-native-hud-view';
+
+const MyComponent = () => {
+  const { show, hide } = useHudContext();
+
+  const handlePress = async () => {
+    show({ name: 'rocket' });
+    await performAsyncOperation();
+    hide();
+  };
+
+  return <Button onPress={handlePress} title="Perform Async Operation" />;
+};
 ```
 
-##### Show custom component HUD
-```
-var customComponent = (<Text style={{color: "#ffffff"}}>Loading</Text>)
-this.refs.hudView.showCustomComponent(customComponent)
-```
-##### Show custom component HUD as spinner
-```
-var customComponent = (<Text style={{color: "#ffffff"}}>Spinning</Text>)
-this.refs.hudView.showCustomComponent(customComponent, true, false)
-```
-##### Do something on HUD completion
-All methods returns a promise if hideOnCompletion is set to true.
-```
-hudView.showSuccess().then(() => {
-  alert("Success view did complete.")
-})
+### Options
+
+The following options are available for configuring the HUD:
+
+- `fadeDuration` (default: 700): The duration of the fade animation in milliseconds.
+- `backgroundColor` (default: 'rgba(0,0,0,0.8)'): The background color of the HUD.
+- `borderRadius` (default: 5): The border radius of the HUD.
+- `height` (default: 80): The height of the HUD.
+- `width` (default: 80): The width of the HUD.
+- `rotate` (default: false): Whether or not to show a rotating animation on the HUD.
+- `rotateDuration` (default: 800): The duration of the rotation animation in milliseconds.
+
+`useNativeDriver` is set to `true` by default. If you wish to disable it, please set it to `false` on the `HudProvider`.
+
+```tsx
+<HudProvider IconComponent={Icon} useNativeDriver={false}>
+  {children}
+</HudProvider>
 ```
 
-### Example of usage with a declarative API
+You can pass these options as a second argument to the `show` method of the HUD context. For example:
+
+```tsx
+show({ name: 'rocket' }, { rotate: true });
 ```
-render() {
-  return(<HudView isVisible={this.state.isHudVisible} type={this.state.hudType}>
-  </HudView>)
-}
+
+You can also use these options to the HudProvider if you want to configured them once, globally. _However, when using "show" the global options will be overwritten by the argument options._ For example if your `HudProvider` is configured like this:
+
+```tsx
+<HudProvider IconComponent={Icon} backgroundColor="blue">
+  {children}
+</HudProvider>
 ```
+
+and you execute `show({ name: 'rocket' }, { backgroundColor: 'red' });` the HUD will have the background color red for this particular execution.
+
+### Icons
+
+You can use any icon library with `react-native-hud-view`. You just need to provide an `IconComponent` to the `HudProvider` component. The `IconComponent` should accept the following props:
+
+- `color`: The color of the icon.
+- `name`: The name of the icon.
+- `size`: The size of the icon.
+
+```tsx
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
+const App = ({ children }) => {
+  return <HudProvider IconComponent={FontAwesomeIcon}>{children}</HudProvider>;
+};
+```
+
+### Styling
+
+You can style the HUD container by passing styles to the `containerStyles` prop of the `HudProvider` component.
+
+```tsx
+<HudProvider IconComponent={Icon} containerStyles={{ backgroundColor: 'blue' }}>
+  {children}
+</HudProvider>
+```
+
+You can also style the wrapper view that contains the HUD by passing styles to the `style` prop of the `HudProvider` component.
+
+```tsx
+<HudProvider IconComponent={Icon} style={{ backgroundColor: 'blue' }}>
+  {children}
+</HudProvider>
+```
+
+## License
+
+`react-native-hud-view` is licensed under the MIT License. This means that anyone can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software as long as they include the original copyright and license notice in all copies or substantial portions of the software.
+
+You are free to use `react-native-hud-view` in any commercial or non-commercial project without attribution, but it is always appreciated if you mention the author in your project's acknowledgments or credits.

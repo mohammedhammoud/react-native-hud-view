@@ -1,0 +1,14 @@
+{
+  ".ts, .js": {
+    "style": "import-sort-style-eslint-typescript-hero",
+    "options": {
+      "tsHeroGroupsConfig": [
+        "/request-context/",
+        "Plains",
+        "/@nestjs/",
+        "Modules",
+        "Workspace"
+      ]
+    }
+  }
+}

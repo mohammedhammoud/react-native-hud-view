@@ -1,12 +1,7 @@
 {
   "name": "react-native-hud-view",
-  "version": "1.2.2",
-  "description": "HudView is a React Native Component for showing HUDs. HudView is based on react-native-vector-icons but can also be used with custom components.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "https://github.com/iktw/react-native-hud-view.git",
+  "version": "1.0.0",
+  "description": "A lightweight, flexible, and customizable progress indicator library for React Native. The library provides an easy way to show a HUD (Heads-up Display) when you need to indicate progress or loading in your application.",
   "keywords": [
     "react-native",
     "react-native-component",
@@ -17,14 +12,92 @@
     "ios",
     "android"
   ],
-  "author": "Mohammed Hammoud",
-  "license": "MIT",
+  "homepage": "https://github.com/mohammedhammoud/react-native-hud-view#readme",
   "bugs": {
-    "url": "https://github.com/iktw/react-native-hud-view/issues"
+    "url": "https://github.com/mohammedhammoud/react-native-hud-view/issues"
   },
-  "homepage": "https://github.com/iktw/react-native-hud-view#readme",
-  "dependencies": {
-    "prop-types": "^15.5.10",
-    "react-native-vector-icons": "^4.3.0"
+  "repository": "https://github.com/mohammedhammoud/react-native-hud-view.git",
+  "license": "MIT",
+  "author": "Mohammed Hammoud",
+  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn clean && tsc -p tsconfig.build.json",
+    "clean": "rimraf dist",
+    "dev": "yarn clean && tsc -w -p tsconfig.build.json",
+    "lint": "eslint . --config .eslintrc --cache --ext .ts,.tsx,.js,.jsx",
+    "lint:ci": "yarn lint --quiet",
+    "lint:fix": "yarn lint --fix",
+    "prepare": "husky install",
+    "test": "TS_JEST_DISABLE_VER_CHECKER=true jest",
+    "test:ci": "yarn test --ci",
+    "test:watch": "yarn test --watch -u",
+    "typecheck": "tsc --noEmit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn typecheck && yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md}": [
+      "yarn lint:fix"
+    ]
+  },
+  "jest": {
+    "cacheDirectory": ".jest/cache",
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@react-native|react-native)/)"
+    ],
+    "setupFilesAfterEnv": [
+      "./jest.setup-after-env.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.21.3",
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@testing-library/jest-native": "^5.4.2",
+    "@testing-library/react-native": "^12.0.1",
+    "@types/jest": "^29.5.0",
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.71.6",
+    "@types/react-test-renderer": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-native": "^4.0.0",
+    "eslint-plugin-sort-destructure-keys": "^1.5.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-typescript-sort-keys": "^2.3.0",
+    "husky": "^8.0.3",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-style-eslint-typescript-hero": "^1.1.0",
+    "jest": "^29.5.0",
+    "lint-staged": "^13.2.0",
+    "metro-react-native-babel-preset": "^0.76.3",
+    "prettier": "^2.8.8",
+    "react": "^18.2.0",
+    "react-native": "^0.71.7",
+    "react-test-renderer": "^18.2.0",
+    "rimraf": "^5.0.0",
+    "semantic-release": "^21.0.1",
+    "typescript": "^5.0.3"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-native": "^0.71.7"
   }
 }

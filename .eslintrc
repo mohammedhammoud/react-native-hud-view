@@ -1,0 +1,49 @@
+{
+  "root": true,
+  "env": { "browser": false, "es6": true, "node": true },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "requireConfigFile": false
+  },
+  "settings": { "react": { "version": "detect" } },
+  "plugins": [
+    "react",
+    "react-native",
+    "sort-keys-fix",
+    "sort-destructure-keys"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "error",
+    "react/jsx-sort-props": "error",
+    "sort-keys": ["error", "asc"],
+    "sort-keys-fix/sort-keys-fix": "error",
+    "func-style": ["error", "expression"],
+    "sort-destructure-keys/sort-destructure-keys": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint", "typescript-sort-keys"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "typescript-sort-keys/interface": "error",
+        "typescript-sort-keys/string-enum": "error"
+      }
+    }
+  ]
+}
+ 
