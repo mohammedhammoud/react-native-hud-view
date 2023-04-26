@@ -1,10 +1,3 @@
-import React, {
-  useCallback,
-  useContext,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
 import {
   Animated,
   Easing,
@@ -13,6 +6,13 @@ import {
   ViewProps,
   ViewStyle,
 } from 'react-native';
+import React, {
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +63,7 @@ export const useHudContext = <P extends IconProps>() => {
 };
 
 export type HudProviderProps<P extends IconProps> = React.PropsWithChildren & {
-  IconComponent: React.ComponentType<Omit<P, 'rotate'>>;
+  IconComponent: React.ComponentType<P>;
   containerStyles?: ViewStyle;
   useNativeDriver?: boolean;
 } & ViewProps &
