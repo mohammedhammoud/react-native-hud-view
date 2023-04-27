@@ -6,7 +6,7 @@
 
 We recommend using the `react-native-vector-icons` library with `react-native-hud-view`, as it is guaranteed to work with the library. To use a different icon library, simply provide the appropriate icon component to the `HudProvider` component.
 
-<img src="https://github.com/mohammedhammoud/react-native-hud-view/blob/dev/demo.gif" width="300px"/>
+<img src="https://github.com/mohammedhammoud/react-native-hud-view/blob/master/demo.gif" width="300px"/>
 
 ## Installation
 
