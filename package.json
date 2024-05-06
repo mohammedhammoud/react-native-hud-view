@@ -1,6 +1,6 @@
 {
   "name": "react-native-hud-view",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A lightweight, flexible, and customizable progress indicator library for React Native. The library provides an easy way to show a HUD (Heads-up Display) when you need to indicate progress or loading in your application.",
   "keywords": [
     "react-native",

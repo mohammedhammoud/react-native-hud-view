@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/mohammedhammoud/react-native-hud-view/compare/v2.0.1...v2.1.0) (2024-05-06)
+
+
+### Bug Fixes
+
+* export types ([b947786](https://github.com/mohammedhammoud/react-native-hud-view/commit/b947786b3dc9a2c1bf041222eaeaa461291854de))
+* make it possibile to click background items when active ([85bef70](https://github.com/mohammedhammoud/react-native-hud-view/commit/85bef70c96fbe701cca4504d228985cdaba00d92))
+
+
+### Features
+
+* add possibility to pass global color ([9eb65e1](https://github.com/mohammedhammoud/react-native-hud-view/commit/9eb65e126a4d7757e4b202e354733715d51e0bc0))
+
 ## [2.0.1](https://github.com/mohammedhammoud/react-native-hud-view/compare/v2.0.0...v2.0.1) (2023-04-26)
 
 
