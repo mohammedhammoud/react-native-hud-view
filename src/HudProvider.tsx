@@ -224,7 +224,11 @@ export const HudProvider = <P extends IconProps>({
       >
         {children}
         {iconProps ? (
-          <View style={styles.container} testID="hud-container">
+          <View
+            pointerEvents="none"
+            style={styles.container}
+            testID="hud-container"
+          >
             <Animated.View
               style={iconContainerStyles}
               testID="hud-icon-container"
