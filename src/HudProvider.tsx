@@ -39,6 +39,7 @@ export type IconProps = { color?: unknown; name: string; size?: number };
 export type HudOptions = {
   backgroundColor?: string;
   borderRadius?: number;
+  color?: string;
   fadeDuration?: number;
   height?: number;
   rotate?: boolean;
@@ -74,6 +75,7 @@ export const HudProvider = <P extends IconProps>({
   backgroundColor = 'rgba(0,0,0,0.8)',
   borderRadius = 5,
   children,
+  color = 'white',
   containerStyles,
   fadeDuration = 700,
   height = 80,
@@ -92,6 +94,7 @@ export const HudProvider = <P extends IconProps>({
     () => ({
       backgroundColor,
       borderRadius,
+      color,
       fadeDuration,
       height,
       rotate,
@@ -99,13 +102,14 @@ export const HudProvider = <P extends IconProps>({
       width,
     }),
     [
-      fadeDuration,
       backgroundColor,
       borderRadius,
+      color,
+      fadeDuration,
       height,
-      width,
       rotate,
       rotateDuration,
+      width,
     ]
   );
 
@@ -165,7 +169,7 @@ export const HudProvider = <P extends IconProps>({
       }
 
       setIconProps({
-        color: 'white',
+        color: defaultOptions.color,
         size: Math.min(nextOptions.width, nextOptions.height) * 0.5,
         ...nextIconProps,
       });
