@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
   },
 });
 
-type IconProps = { color?: unknown; name: string; size?: number };
+export type IconProps = { color?: unknown; name: string; size?: number };
 
-type Options = {
+export type HudOptions = {
   backgroundColor?: string;
   borderRadius?: number;
   fadeDuration?: number;
@@ -48,7 +48,7 @@ type Options = {
 
 type HudContextProps<P extends IconProps> = {
   hide: () => void;
-  show: (iconProps: P, options?: Options) => void;
+  show: (iconProps: P, options?: HudOptions) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -67,7 +67,7 @@ export type HudProviderProps<P extends IconProps> = React.PropsWithChildren & {
   containerStyles?: ViewStyle;
   useNativeDriver?: boolean;
 } & ViewProps &
-  Options;
+  HudOptions;
 
 export const HudProvider = <P extends IconProps>({
   IconComponent,
@@ -88,7 +88,7 @@ export const HudProvider = <P extends IconProps>({
   const rotationAnimationRef = useRef(new Animated.Value(0));
   const [iconProps, setIconProps] = useState<P>();
 
-  const defaultOptions = useMemo<Required<Options>>(
+  const defaultOptions = useMemo<Required<HudOptions>>(
     () => ({
       backgroundColor,
       borderRadius,
@@ -109,7 +109,7 @@ export const HudProvider = <P extends IconProps>({
     ]
   );
 
-  const [options, setOptions] = useState<Options>(defaultOptions);
+  const [options, setOptions] = useState<HudOptions>(defaultOptions);
 
   const fadeIn = useCallback(() => {
     Animated.timing(fadeAnimationRef.current, {
