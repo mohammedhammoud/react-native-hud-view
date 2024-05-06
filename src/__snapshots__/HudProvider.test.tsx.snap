@@ -99,6 +99,7 @@ exports[`HudProvider renders correctly when toggling hud 1`] = `
     />
   </View>
   <View
+    pointerEvents="none"
     style={
       {
         "alignItems": "center",
